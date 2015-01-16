@@ -1,0 +1,6 @@
+{
+	"name": "<%= _.slugify(appname) %>",
+	"description": "<%= customData.siteDescription %>",
+	"author": "<%= customData.siteAuthor %>",
+	"version": "1.0.0"
+}

@@ -1,5 +1,6 @@
 var yeoman = require('yeoman-generator'),
-	yosay  = require('yosay');
+	yosay  = require('yosay'),
+	chalk  = require('chalk');
 
 var kristysTestGenerator = yeoman.generators.Base.extend({
 	promptUser: function()
@@ -14,7 +15,7 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		/**
 		 * Just a basic message that gets output to the terminal.
 		 */
-		this.log('we\'re gonna build the most basic thing ever. get ready.');
+		this.log(chalk.magenta('We\'re gonna build the most basic thing ever. get ready.'));
 
 		/**
 		 * All the questions we'll ask the user during the setup. Exciting.
@@ -27,8 +28,31 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 			{
 				name:    'siteDescription',
 				message: 'What\'s it all about?'
-			}
+			},
+			{
+				name:    'siteAuthor',
+				message: 'Who\'s the author? Probs you. Probs.'
+			},
+			{
+				type:    'confirm',
+				name:    'includeReadme',
+				message: 'Include a README.md file?',
+				default:  true
+			},
+			{
+				type:    'confirm',
+				name:    'includeGit',
+				message: 'Will you be using git for this project? (you best be)'
+			}/*,
+			{
+				when: function( answers ) {
+					return answers.includeGit;
+				},
+				name:    'gitRepo',
+				message: 'Enter the repo URL (optional):'
+			}*/
 		];
+
 
 		/**
 		 * I thought it'd be neater to create our own object to hold the user
@@ -42,9 +66,18 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		 *
 		 * Then, we're done(): move onto the next function.
 		 */
-		this.prompt(prompts, function(props) {
-			this.customData.siteName        = props.siteName;
-			this.customData.siteDescription = props.siteDescription;
+		this.prompt(prompts, function(answers)
+		{
+			// Generic Project Details
+			this.customData.siteName        = answers.siteName;
+			this.customData.siteDescription = answers.siteDescription;
+			this.customData.siteAuthor      = answers.siteAuthor;
+
+			// Config/Optional Files
+			this.customData.includeReadme = answers.includeReadme;
+
+			// Git/SVN
+			this.customData.includeGit = answers.includeGit;
 
 			done();
 		}.bind(this));
@@ -67,7 +100,8 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		 * in the first step.
 		 */
 		var context = {
-			site_name: this.customData.siteName
+			siteName:        this.customData.siteName,
+			siteDescription: this.customData.siteDescription
 		};
 
 		/**
@@ -75,6 +109,41 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		 * tags with corresponding context val.
 		 */
 		this.template('_index.html', 'src/index.html', context);
+
+		/**
+		 * Create our package.json file.
+		 *
+		 * We won't pass the context into this one cos we need values from `this`
+		 * which is in the main context.
+		 */
+		this.template('_package.json', 'package.json');
+
+		/**
+		 * Copy over our dev environment config files and things.
+		 */
+		this.copy('editorconfig', '.editorconfig');
+		this.copy('htmlhintrc', '.htmlhintrc');
+		this.copy('jshintrc', '.jshintrc');
+		this.copy('scss-lint.yml', '.scss-lint.yml');
+
+		/**
+		 * The README.md file is optional. Only copy that to the project if the user
+		 * says so.
+		 */
+		if(this.customData.includeReadme)
+		{
+			this.template('_README.md', 'README.md');
+		}
+	},
+	git: function()
+	{
+		/**
+		 * We only want to run this task if the user selected 'y' to using git.
+		 */
+		if(this.customData.includeGit)
+		{
+			this.copy('gitignore', '.gitignore');
+		}
 	}
 });
 

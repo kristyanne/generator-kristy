@@ -1,0 +1,33 @@
+# http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = "utf-8"
+end_of_line = lf
+
+[*.js]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.css]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.scss]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.html]
+indent_style = space
+indent_size = 4
+
+[*.hbs]
+indent_style = space
+indent_size = 4
