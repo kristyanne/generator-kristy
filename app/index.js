@@ -134,16 +134,32 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		{
 			this.template('_README.md', 'README.md');
 		}
-	},
-	git: function()
-	{
+
 		/**
+		 * Copy over the Gruntfile. Choosing Grunt over Gulp for now because the
+		 * Gulpy assemble package is crap.
+		 */
+		this.template('Gruntfile.js');
+
+		/**
+		 * Git Actions.
 		 * We only want to run this task if the user selected 'y' to using git.
 		 */
 		if(this.customData.includeGit)
 		{
 			this.copy('gitignore', '.gitignore');
 		}
+	},
+	end: function()
+	{
+		this.installDependencies({
+			bower:       false,
+			npm:         true,
+			skipInstall: false,
+			callback: function() {
+				this.log(chalk.green('WE ARE ALL DONE HERE. GOODBYE.'));
+			}.bind(this) // So we don't lose the scope of 'this' inside the callback()
+		});
 	}
 });
 
