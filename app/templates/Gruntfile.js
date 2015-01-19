@@ -7,8 +7,15 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	/**
-	 * Load dependencies
-	 */
-	require('load-grunt-tasks')(grunt, {pattern: ['grunt-*', 'assemble']});
+    require('time-grunt')(grunt);
+
+    require('load-grunt-tasks')(grunt);
+
+    grunt.initConfig({
+        pkg: require('./package.json'),
+    });
+
+    grunt.loadTasks('grunt');
+
+    grunt.registerTask('dev', 'Start a live-reloading dev webserver on localhost and watch for changes', ['browserSync', 'watch']);
 };

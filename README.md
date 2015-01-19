@@ -4,7 +4,7 @@
 
 ## What does it do?
 
-Not a lot. At the moment it just asks for some info, creates some directories and replaces values in index.html. Exciting.
+Not a lot so far.
 
 ## How to use this amazing tool
 
@@ -38,3 +38,12 @@ Then, let's get generating with our generator:
 `yo kristy`
 
 Then watch the magic happen. How disappointing.
+
+## TODO
+
+- JS: haven't done anything for JS files yet. Maybe we can download jQuery, Modernizr, etc?
+- Better GitHub integration (Not sure what's possible yet, best find out eh).
+- Populate the Gruntfile with some basic tasks that would be common between projects.
+- Run Grunt task after NPM dependencies have been installed.
+- Maybe there could be an option to use grunt or gulp?
+- HTML Compiling: would we use Assemble for every project? Or would we want an option to just create a single index.html file.

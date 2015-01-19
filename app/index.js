@@ -141,6 +141,9 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		 */
 		this.template('Gruntfile.js');
 
+		this.directory('grunt', 'grunt');
+
+
 		/**
 		 * Git Actions.
 		 * We only want to run this task if the user selected 'y' to using git.
@@ -149,6 +152,11 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		{
 			this.copy('gitignore', '.gitignore');
 		}
+
+		/**
+		 * CSS/SCSS
+		 */
+		this.template('main.scss', 'src/scss/main.scss');
 	},
 	end: function()
 	{
