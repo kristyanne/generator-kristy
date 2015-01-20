@@ -23,7 +23,8 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		var prompts = [
 			{
 				name:    'siteName',
-				message: 'what\'s your site\'s name?'
+				message: 'what\'s your site\'s name?',
+				required: true
 			},
 			{
 				name:    'siteDescription',
@@ -31,7 +32,8 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 			},
 			{
 				name:    'siteAuthor',
-				message: 'Who\'s the author? Probs you. Probs.'
+				message: 'Who\'s the author? Probs you. Probs.',
+				required: true
 			},
 			{
 				type:    'confirm',
@@ -42,7 +44,8 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 			{
 				type:    'confirm',
 				name:    'includeGit',
-				message: 'Will you be using git for this project? (you best be)'
+				message: 'Will you be using git for this project? (you best be)',
+				default: true
 			},/*,
 			{
 				when: function( answers ) {
@@ -54,17 +57,20 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 			{
 				type:    'confirm',
 				name:    'includeBourbon',
-				message: 'Would you like to use bourbon in this project? \n' + chalk.green('http://bourbon.io/')
+				message: 'Would you like to use bourbon in this project? \n' + chalk.green('http://bourbon.io/'),
+				default: true
 			},
 			{
 				type:    'confirm',
 				name:    'includeNormalize',
-				message: 'Would you like to include normalize in this project? \n' + chalk.green('https://github.com/hail2u/normalize.scss')
+				message: 'Would you like to include normalize in this project? \n' + chalk.green('https://github.com/hail2u/normalize.scss'),
+				default: true
 			},
 			{
 				type:    'confirm',
 				name:    'includeAssemble',
-				message: 'Do you want to use assemble to compile the HTML? \n' + chalk.green('http://assemble.io/')
+				message: 'Do you want to use assemble to compile the HTML? \n' + chalk.green('http://assemble.io/'),
+				default: true
 			}
 		];
 
@@ -167,6 +173,8 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		this.copy('htmlhintrc', '.htmlhintrc');
 		this.copy('jshintrc', '.jshintrc');
 		this.copy('scss-lint.yml', '.scss-lint.yml');
+		this.copy('Gemfile', 'Gemfile');
+		this.copy('Gemfile.lock', 'Gemfile.lock');
 
 		/**
 		 * The README.md file is optional. Only copy that to the project if the user

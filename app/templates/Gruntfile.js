@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', 'Start a live-reloading dev webserver on localhost and watch for changes', ['browserSync', 'watch']);
 
-    grunt.registerTask('css', 'Compile CSS file(s) and run autoprefixer', ['sass', 'autoprefixer']);
+    grunt.registerTask('css', 'Validate and Compile CSS file(s) and run autoprefixer', ['scsslint', 'sass', 'autoprefixer']);
 
     grunt.registerTask('html','Compile HTML files', '<% if (customData.includeAssemble) { %>assemble<% } else { %>copy:html<% } %>');
 };
