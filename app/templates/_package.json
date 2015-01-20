@@ -9,7 +9,8 @@
 	    "grunt-browser-sync": "^1.5.3",
 	    "grunt-contrib-watch": "^0.6.1",
 	    "grunt-sass": "^0.17.0",
-	    "load-grunt-tasks": "^0.6.0",
+	    "load-grunt-tasks": "^0.6.0",<% if (customData.includeBourbon) { %>
+	    "node-bourbon": "^1.2.3",<% } %>
 	    "time-grunt": "^1.0.0"
 	}
 }

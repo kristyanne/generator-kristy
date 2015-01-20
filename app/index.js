@@ -43,7 +43,7 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 				type:    'confirm',
 				name:    'includeGit',
 				message: 'Will you be using git for this project? (you best be)'
-			}/*,
+			},/*,
 			{
 				when: function( answers ) {
 					return answers.includeGit;
@@ -51,6 +51,11 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 				name:    'gitRepo',
 				message: 'Enter the repo URL (optional):'
 			}*/
+			{
+				type:    'confirm',
+				name:    'includeBourbon',
+				message: 'Would you like to use bourbon in this project? \n' + chalk.green('http://bourbon.io/')
+			}
 		];
 
 
@@ -78,6 +83,9 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 
 			// Git/SVN
 			this.customData.includeGit = answers.includeGit;
+
+			// CSS Options
+			this.customData.includeBourbon = answers.includeBourbon;
 
 			done();
 		}.bind(this));

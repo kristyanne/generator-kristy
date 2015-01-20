@@ -14,7 +14,7 @@ var watchTask = function( grunt ) {
     grunt.config('watch', {
         css: {
             files: ['src/**/*.scss'],
-            tasks: ['sass']
+            tasks: ['css']
         }
     });
 };

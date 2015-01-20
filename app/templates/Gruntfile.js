@@ -18,4 +18,6 @@ module.exports = function(grunt) {
     grunt.loadTasks('grunt');
 
     grunt.registerTask('dev', 'Start a live-reloading dev webserver on localhost and watch for changes', ['browserSync', 'watch']);
+
+    grunt.registerTask('css', 'Compile CSS file(s) and run autoprefixer', ['sass', 'autoprefixer']);
 };

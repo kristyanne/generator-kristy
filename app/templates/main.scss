@@ -1,1 +1,11 @@
 @charset "UTF-8";
+
+/*------------------------*\
+    $IMPORTS
+\*------------------------*/
+/**
+ * Import Utility Libraries:
+ *
+ * <% if (customData.includeBourbon) { %>1. Bourbon: http://bourbon.io<% } %>
+ */
+<% if (customData.includeBourbon) { %>@import 'bourbon'; // [1]<% } %>

@@ -10,7 +10,8 @@ var sassTask = function( grunt ) {
     grunt.config('sass', {
         options: {
             sourceMap:   true,
-            outputStyle: 'compressed'
+            outputStyle: 'compressed'<% if (customData.includeBourbon) { %>,
+            includePaths: require('node-bourbon').includePaths<% } %>
         },
         build: {
             files: [
