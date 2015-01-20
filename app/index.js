@@ -60,6 +60,11 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 				type:    'confirm',
 				name:    'includeNormalize',
 				message: 'Would you like to include normalize in this project? \n' + chalk.green('https://github.com/hail2u/normalize.scss')
+			},
+			{
+				type:    'confirm',
+				name:    'includeAssemble',
+				message: 'Do you want to use assemble to compile the HTML? \n' + chalk.green('http://assemble.io/')
 			}
 		];
 
@@ -93,6 +98,9 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 			this.customData.includeBourbon   = answers.includeBourbon;
 			this.customData.includeNormalize = answers.includeNormalize;
 
+			// HTML
+			this.customData.includeAssemble = answers.includeAssemble;
+
 			done();
 		}.bind(this));
 	},
@@ -106,6 +114,14 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		this.mkdir('src/scss');
 		this.mkdir('src/js');
 		this.mkdir('src/img');
+		this.mkdir('src/html');
+
+		if(this.customData.includeAssemble) {
+			this.mkdir('src/html/data');
+			this.mkdir('src/html/layouts');
+			this.mkdir('src/html/pages');
+			this.mkdir('src/html/partials');
+		}
 	},
 	copyFiles: function()
 	{
@@ -113,16 +129,28 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		 * Create a variable to hold some data values that we got from the user
 		 * in the first step.
 		 */
-		var context = {
-			siteName:        this.customData.siteName,
-			siteDescription: this.customData.siteDescription
+
+		var useAssemble = this.customData.includeAssemble;
+
+		var layoutContext = {
+			metaTitle:       !useAssemble ? this.customData.siteName : '{{title}}',
+			metaDescription: this.customData.siteDescription,
+			body:            !useAssemble ? '<h1>' + this.customData.siteName + '</h1>' : '{{body}}'
 		};
 
 		/**
 		 * Copies templates/_index.html into index.html and replaces template
 		 * tags with corresponding context val.
 		 */
-		this.template('_index.html', 'src/index.html', context);
+		if(!useAssemble)
+		{
+			this.template('_layout.html', 'src/html/index.html', layoutContext);
+		}
+		else
+		{
+			this.template('_layout.html', 'src/html/layouts/base-layout.hbs', layoutContext);
+			this.template('_index.html', 'src/html/pages/index.hbs');
+		}
 
 		/**
 		 * Create our package.json file.

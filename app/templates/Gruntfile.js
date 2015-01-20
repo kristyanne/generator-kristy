@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 
     require('time-grunt')(grunt);
 
-    require('load-grunt-tasks')(grunt);
+   require('load-grunt-tasks')(grunt, {pattern: ['grunt-*', 'assemble']});
 
     grunt.initConfig({
         pkg: require('./package.json'),
@@ -20,4 +20,6 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', 'Start a live-reloading dev webserver on localhost and watch for changes', ['browserSync', 'watch']);
 
     grunt.registerTask('css', 'Compile CSS file(s) and run autoprefixer', ['sass', 'autoprefixer']);
+
+    grunt.registerTask('html','Compile HTML files', '<% if (customData.includeAssemble) { %>assemble<% } else { %>copy:html<% } %>');
 };

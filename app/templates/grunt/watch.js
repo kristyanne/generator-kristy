@@ -15,7 +15,15 @@ var watchTask = function( grunt ) {
         css: {
             files: ['src/**/*.scss'],
             tasks: ['css']
-        }
+        },<% if (customData.includeAssemble) { %>
+        assemble: {
+            files: ['src/html/**/*.hbs'],
+            tasks: ['assemble']
+        }<% } else { %>
+        html: {
+            files: ['src/html/**/*.html'],
+            tasks: ['html']
+        }<% } %>
     });
 };
 

@@ -4,7 +4,6 @@
  * `grunt browserSync`
  *
  * TODO:
- * - change path for HTML files when watching for changes.
  * - add JS files to the bdFiles array.
  */
 
@@ -16,13 +15,13 @@ var browserSyncTask = function( grunt ) {
             bsFiles: {
                 src: [
                     'dist/css/*.css',
-                    '*.html'
+                    'dist/html/*.html'
                 ]
             },
             options: {
                 watchTask: true,
                 server: {
-                    baseDir:  'dist',
+                    baseDir:  'dist/html',
                     directory: true
                 }
             }
