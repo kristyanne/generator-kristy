@@ -41,6 +41,7 @@ Then watch the magic happen. How disappointing.
 
 ## TODO
 
+- Normalize Include: is there a way to exclude files being copies to the project dir? Don't want their gruntfile and stuff.
 - JS: haven't done anything for JS files yet. Maybe we can download jQuery, Modernizr, etc?
 - Better GitHub integration (Not sure what's possible yet, best find out eh).
 - Populate the Gruntfile with some basic tasks that would be common between projects.

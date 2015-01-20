@@ -6,6 +6,8 @@
 /**
  * Import Utility Libraries:
  *
- * <% if (customData.includeBourbon) { %>1. Bourbon: http://bourbon.io<% } %>
+ * <% if (customData.includeBourbon) { %>Bourbon: http://bourbon.io<% } %>
+ * <% if (customData.includeNormalize) { %>Normalize: https://github.com/hail2u/normalize.scss<% } %>
  */
-<% if (customData.includeBourbon) { %>@import 'bourbon'; // [1]<% } %>
+<% if (customData.includeBourbon) { %>@import 'bourbon';<% } %>
+<% if (customData.includeNormalize) { %>@import 'lib/normalize/normalize';<% } %>

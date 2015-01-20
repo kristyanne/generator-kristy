@@ -55,6 +55,11 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 				type:    'confirm',
 				name:    'includeBourbon',
 				message: 'Would you like to use bourbon in this project? \n' + chalk.green('http://bourbon.io/')
+			},
+			{
+				type:    'confirm',
+				name:    'includeNormalize',
+				message: 'Would you like to include normalize in this project? \n' + chalk.green('https://github.com/hail2u/normalize.scss')
 			}
 		];
 
@@ -85,7 +90,8 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 			this.customData.includeGit = answers.includeGit;
 
 			// CSS Options
-			this.customData.includeBourbon = answers.includeBourbon;
+			this.customData.includeBourbon   = answers.includeBourbon;
+			this.customData.includeNormalize = answers.includeNormalize;
 
 			done();
 		}.bind(this));
@@ -165,6 +171,13 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		 * CSS/SCSS
 		 */
 		this.template('main.scss', 'src/scss/main.scss');
+
+		if(this.customData.includeNormalize)
+		{
+			this.remote('hail2u', 'normalize.scss', function(err, remote) {
+				remote.directory('.', 'src/scss/lib/normalize');
+			});
+		}
 	},
 	end: function()
 	{
