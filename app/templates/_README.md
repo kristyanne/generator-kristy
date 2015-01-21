@@ -15,7 +15,7 @@
 
 This project uses [grunt](http://gruntjs.com/) to build the front-end so if you don't have that installed already, now's your chance:
 
-`npm install -g grunt`
+`npm install -g grunt-cli`
 
 ### Install Dependencies
 
@@ -39,21 +39,24 @@ Each grunt task for this project is split into individual task files which can b
 
 However, here's an overview of the build tasks you're gonna be using on a day to day basis:
 
+### Build
+
+If you're running this project for the first time (or if you just want a clean start), then you'll need to run the build task:
+
+`grunt build`
+
+This will clear out the /dist directory, then re-compile everything back into /dist. Then you're ready to run your local webserver...
+
 ### Development
 
 `grunt dev`
 
-Starts a live-reloading dev webserver on localhost and watches for changes.
+Starts a live-reloading static dev webserver on localhost and watches for changes.
 
 If you don't want to run the webserver (you may already have a dev env set up) then you'll probably just want to watch for changes. If so, run the watch task:
 
 `grunt watch`
 
-### Build
-
-`grunt build`
-
-This will run the all encompassing build tasks which will compile the HTML, CSS, JS and images.
 
 ### Production
 

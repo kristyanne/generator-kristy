@@ -21,7 +21,7 @@ var browserSyncTask = function( grunt ) {
             options: {
                 watchTask: true,
                 server: {
-                    baseDir:  'dist/html',
+                    baseDir:  ['dist/html', 'dist'],
                     directory: true
                 }
             }

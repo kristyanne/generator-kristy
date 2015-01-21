@@ -49,4 +49,3 @@ Then watch the magic happen. How disappointing.
 - Populate the Gruntfile with some basic tasks that would be common between projects.
 - Run Grunt task after NPM dependencies have been installed.
 - Maybe there could be an option to use grunt or gulp?
-- HTML Compiling: would we use Assemble for every project? Or would we want an option to just create a single index.html file.

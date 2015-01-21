@@ -1,10 +1,16 @@
 linters:
-    Comment:
-        enabled: false
-    ElsePlacement:
-        style: new_line
-    Indentation:
-        character: space
-        width: 4
-    SpaceBeforeBrace:
-        allow_single_line_padding: true
+StringQuotes:
+enabled: false
+
+Comment:
+enabled: false
+
+ElsePlacement:
+style: new_line
+
+Indentation:
+character: space
+width: 4
+
+SpaceBeforeBrace:
+allow_single_line_padding: true
