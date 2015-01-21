@@ -39,6 +39,12 @@ Then, let's get generating with our generator:
 
 Then watch the magic happen. How disappointing.
 
+### Options
+
+To skip the NPM installation, run the generator with the --skip-install flag:
+
+`yo kristy --skip-install`
+
 ## TODO
 
 - Normalize Include: is there a way to exclude files being copies to the project dir? Don't want their gruntfile and stuff.
