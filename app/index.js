@@ -3,6 +3,12 @@ var yeoman = require('yeoman-generator'),
 	chalk  = require('chalk');
 
 var kristysTestGenerator = yeoman.generators.Base.extend({
+	constructor: function()
+	{
+		yeoman.generators.Base.apply(this, arguments);
+
+		this.pkg = require('../package.json');
+	},
 	promptUser: function()
 	{
 		var done = this.async();
@@ -217,14 +223,23 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 	},
 	end: function()
 	{
-		this.installDependencies({
-			bower:       false,
-			npm:         true,
-			skipInstall: false,
-			callback: function() {
-				this.log(chalk.green('WE ARE ALL DONE HERE. GOODBYE.'));
-			}.bind(this) // So we don't lose the scope of 'this' inside the callback()
-		});
+		var endMessage = 'WE ARE DONE HERE. GOOD WORK EVERYONE.';
+
+		if(!this.options['skip-install']) {
+			this.installDependencies({
+				bower:       false,
+				npm:         true,
+				skipInstall: this.options['skip-install'],
+				skipMessage: this.options['skip-install-messgage'],
+				callback: function()
+				{
+					this.log(chalk.black.bgGreen(endMessage));
+				}.bind(this) // So we don't lose the scope of 'this' inside the callback()
+			});
+		} else {
+			this.log(chalk.yellow('As requested, let\'s skip the NPM install. You\'ll need to run that manually later. See the .README for more info :)'));
+			this.log(chalk.black.bgGreen(endMessage));
+		}
 	}
 });
 
