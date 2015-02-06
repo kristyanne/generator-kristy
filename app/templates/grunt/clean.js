@@ -7,8 +7,13 @@
 var cleanTask = function( grunt ) {
     'use strict';
 
+    // Get Paths Config
+    var paths = grunt.config('paths');
+
+    // Task Config
     grunt.config('clean', {
-        dist: ['dist/']
+        dist: [paths.dist + '/'],
+        tmp:  [paths.tmp + '/']
     });
 };
 

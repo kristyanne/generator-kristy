@@ -11,17 +11,21 @@
 var watchTask = function( grunt ) {
     'use strict';
 
+    // Get Paths Config
+    var paths = grunt.config('paths');
+
+    // Task Config
     grunt.config('watch', {
         css: {
-            files: ['src/**/*.scss'],
+            files: [paths.src + '/**/*.scss'],
             tasks: ['css']
         },<% if (customData.includeAssemble) { %>
         assemble: {
-            files: ['src/html/**/*.hbs'],
+            files: [paths.src + '/html/**/*.hbs'],
             tasks: ['assemble']
         }<% } else { %>
         html: {
-            files: ['src/html/**/*.html'],
+            files: [paths.src + '/html/**/*.html'],
             tasks: ['html']
         }<% } %>
     });

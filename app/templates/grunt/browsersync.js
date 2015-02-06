@@ -2,26 +2,28 @@
  * browsersync.js
  * ==============
  * `grunt browserSync`
- *
- * TODO:
- * - add JS files to the bdFiles array.
  */
 
 var browserSyncTask = function( grunt ) {
     'use strict';
 
+    // Get Paths Config
+    var paths = grunt.config('paths');
+
+    // Task Config
     grunt.config('browserSync', {
         dev: {
             bsFiles: {
                 src: [
-                    'dist/css/*.css',
-                    'dist/html/*.html'
+                    paths.dist + '/css/*.css',
+                    paths.dist + '/html/*.html',
+                    paths.dist + '/js/*.js'
                 ]
             },
             options: {
                 watchTask: true,
                 server: {
-                    baseDir:  ['dist/html', 'dist'],
+                    baseDir:  [paths.dist + '/html', paths.dist],
                     directory: true
                 }
             }

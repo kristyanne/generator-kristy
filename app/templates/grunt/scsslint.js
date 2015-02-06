@@ -7,14 +7,18 @@
 var scssLintTask = function( grunt ) {
     'use strict';
 
+    // Get Paths Config
+    var paths = grunt.config('paths');
+
+    // Task Config
     grunt.config('scsslint', {
         options: {
             bundleExec: true,
             config: '.scss-lint.yml',
-            exclude: ['src/scss/lib/**/*.scss']
+            exclude: [paths.src + '/scss/lib/**/*.scss']
         },
         files: [
-            'src/scss/**/*.scss'
+            paths.src + '/scss/**/*.scss'
         ]
     });
 };

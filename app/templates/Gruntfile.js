@@ -14,6 +14,12 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: require('./package.json'),
+        env: grunt.option('env') || 'dev',
+        paths: {
+            src:   'src',
+            dist:  'dist',
+            tmp:   'tmp'
+        }
     });
 
 

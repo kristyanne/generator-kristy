@@ -7,13 +7,17 @@
 var copyTask = function( grunt ) {
     'use strict';
 
+    // Get Paths Config
+    var paths = grunt.config('paths');
+
+    // Task Config
     grunt.config('copy', {<% if (!customData.includeAssemble) { %>
         html: {
             files: [{
-                cwd:    'src/html',
+                cwd:    paths.src + '/html',
                 expand: true,
                 src:    ['**/*.html'],
-                dest:   'dist/html'
+                dest:   paths.dist + '/html'
             }]
         }<% } %>
     });

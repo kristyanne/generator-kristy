@@ -7,19 +7,23 @@
 var assembleTask = function( grunt ) {
     'use strict';
 
+    // Get Paths Config
+    var paths = grunt.config('paths');
+
+    // Task Config
     grunt.config('assemble', {
         options: {
-            layoutdir: 'src/html/layouts',
-            partials:  'src/html/partials/**/*.hbs',
-            data:      'src/html/data/**.json',
+            layoutdir: paths.src + '/html/layouts',
+            partials:  paths.src + '/html/partials/**/*.hbs',
+            data:      paths.src + '/html/data/**.json',
             flatten:   true
         },
         build: {
             options: {
                 layout: 'base-layout.hbs'
             },
-            src:  ['src/html/pages/**/*.hbs'],
-            dest: 'dist/html/'
+            src:  [paths.src + '/html/pages/**/*.hbs'],
+            dest: paths.dist + '/html/'
         }
     });
 };

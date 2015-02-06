@@ -7,6 +7,10 @@
 var autoprefixerTask = function( grunt ) {
     'use strict';
 
+    // Get Paths Config
+    var paths = grunt.config('paths');
+
+    // Task Config
     grunt.config('autoprefixer', {
         build: {
             options: {
@@ -14,10 +18,10 @@ var autoprefixerTask = function( grunt ) {
                 map:      true
             },
             files: [{
-                cwd:    'dist/css',
+                cwd:    paths.dist + '/css',
                 expand: true,
                 src:    ['**/*.css'],
-                dest:   'dist/css'
+                dest:   paths.dist + '/css'
             }]
         }
     });
