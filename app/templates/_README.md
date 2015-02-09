@@ -55,12 +55,13 @@ Starts a live-reloading static dev webserver on localhost and watches for change
 
 If you don't want to run the webserver (you may already have a dev env set up) then you'll probably just want to watch for changes. If so, run the watch task:
 
-`grunt watch`
-
+`grunt watch`<% if (customData.hasProduction) { %>
 
 ### Production
 
-TODO
+This will build everything ready for production to the 'production' path defined in the gruntfile.
+
+`grunt build --env=production`<% } %>
 
 ## Editor Helpers/Utilities
 

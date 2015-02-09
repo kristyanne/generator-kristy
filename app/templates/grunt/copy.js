@@ -19,6 +19,12 @@ var copyTask = function( grunt ) {
                 src:    ['**/*.html'],
                 dest:   paths.dist + '/html'
             }]
+        },<% } %><% if (customData.hasProduction) { %>
+        production: {
+            expand: true,
+            cwd:    paths.dist,
+            src:    ['**/*', '!html/**'],
+            dest:   paths.production
         }<% } %>
     });
 };

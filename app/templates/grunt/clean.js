@@ -13,7 +13,8 @@ var cleanTask = function( grunt ) {
     // Task Config
     grunt.config('clean', {
         dist: [paths.dist + '/'],
-        tmp:  [paths.tmp + '/']
+        tmp:  [paths.tmp + '/']<% if (customData.hasProduction) { %>,
+        production: [paths.production + '/']<% } %>
     });
 };
 

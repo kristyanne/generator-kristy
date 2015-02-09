@@ -21,7 +21,7 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 		/**
 		 * Just a basic message that gets output to the terminal.
 		 */
-		this.log(chalk.magenta('We\'re gonna build the most basic thing ever. get ready.'));
+		this.log(chalk.magenta('We\'re gonna build the most AMAZING thing ever. get ready.'));
 
 		/**
 		 * All the questions we'll ask the user during the setup. Exciting.
@@ -77,6 +77,26 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 				name:    'includeAssemble',
 				message: 'Do you want to use assemble to compile the HTML? \n' + chalk.green('http://assemble.io/'),
 				default: true
+			},
+			{
+				type:    'confirm',
+				name:    'includeBrowserify',
+				message: 'Would you like to use browserify in this project? \n' + chalk.green('http://browserify.org/'),
+				default:  true
+			},
+			{
+				type:    'confirm',
+				name:    'hasProduction',
+				message: 'Does this project have a production environment? \n' + chalk.green('e.g. Is this an Umbraco or Wordpress project?'),
+				default:  false
+			},
+			{
+				when: function( answers ) {
+					return answers.hasProduction;
+				},
+				name:    'productionDir',
+				message: 'Enter the name of the production asset directory:',
+				default: 'assets'
 			}
 		];
 
@@ -112,6 +132,13 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 
 			// HTML
 			this.customData.includeAssemble = answers.includeAssemble;
+
+			// JS Options
+			this.customData.includeBrowserify = answers.includeBrowserify;
+
+			// Production/Build Options
+			this.customData.hasProduction = answers.hasProduction;
+			this.customData.productionDir = answers.productionDir;
 
 			done();
 		}.bind(this));
@@ -193,7 +220,7 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 
 		/**
 		 * Copy over the Gruntfile. Choosing Grunt over Gulp for now because the
-		 * Gulpy assemble package is crap.
+		 * Gulp assemble package is crap.
 		 */
 		this.template('Gruntfile.js');
 
@@ -219,6 +246,18 @@ var kristysTestGenerator = yeoman.generators.Base.extend({
 			this.remote('hail2u', 'normalize.scss', function(err, remote) {
 				remote.directory('.', 'src/scss/lib/normalize');
 			});
+		}
+
+		/**
+		 * JS
+		 */
+		this.template('main.js', 'src/js/main.js');
+
+		if(this.customData.includeBrowserify)
+		{
+			this.mkdir('src/js/modules');
+			this.copy('modules.js', 'src/js/modules/modules.js');
+			this.copy('sample-module.js', 'src/js/modules/sample-module.js');
 		}
 	},
 	end: function()
