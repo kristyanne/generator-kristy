@@ -57,7 +57,6 @@ module.exports = function(grunt) {
      * ------------
      */
     grunt.registerTask('css',   ['scsslint', 'sass', 'autoprefixer']);
-    grunt.registerTask('icons', ['svgmin:icons', 'webfont:icons', 'css']);
     grunt.registerTask('html',  ['<% if (customData.includeAssemble) { %>assemble<% } else { %>copy:html<% } %>']);
     grunt.registerTask('js',    [<% if (customData.includeBrowserify) { %>'browserify',<% } %>'uglify']);
 };
